@@ -135,6 +135,28 @@ public class TD2 {
 		System.out.println();
 		
 		System.out.println("Une croix");
+		croix(n);
+		System.out.println();
+		
+		System.out.println("Un sablier plein");
+		sablier_plein(n);
+		System.out.println();
+		
+		System.out.println("Un sablier vide");
+		sablier_vide(n);
+		System.out.println();
+		
+		System.out.println("Un noeud-papillon plein");
+		noeudpap_plein(n);
+		System.out.println();
+		
+		System.out.println("Un noeud-papillon vide");
+		noeudpap_vide(n);
+		System.out.println();
+		
+	}
+	
+	public static void croix(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
 				if (j == i || j == n-i-1) {
@@ -145,14 +167,12 @@ public class TD2 {
 			}
 			System.out.println();
 		}
-		System.out.println();
-		
-		System.out.println("Un sablier plein");
+	}
+	
+	public static void sablier_plein(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
-				if ((j >= i) && (j <= n-i-1)) {
-					System.out.print("* ");
-				} else if ((j >= n-i-1) && (j <= i)) {
+				if ((j >= i) && (j <= n-i-1)||(j >= n-i-1) && (j <= i)) {
 					System.out.print("* ");
 				}
 				else {
@@ -161,9 +181,9 @@ public class TD2 {
 			}
 			System.out.println();
 		}
-		System.out.println();
-		
-		System.out.println("Un sablier vide");
+	}
+	
+	public static void sablier_vide(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
 				if (i ==0 || i==n-1) {System.out.print("* ");}
@@ -177,9 +197,9 @@ public class TD2 {
 			}
 			System.out.println();
 		}
-		System.out.println();
-		
-		System.out.println("Un noeud-papillon plein");
+	}
+	
+	public static void noeudpap_plein(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
 				if ((j > i) && (j < n-i-1)) {
@@ -193,9 +213,9 @@ public class TD2 {
 			}
 			System.out.println();
 		}
-		System.out.println();
-		
-		System.out.println("Un noeud-papillon vide");
+	}
+	
+	public static void noeudpap_vide(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
 				if (j ==0 || j==(n-1)) {System.out.print("* ");}
@@ -210,6 +230,7 @@ public class TD2 {
 			System.out.println();
 		}
 		
+
 	}
 	
 	public static void exo8() {
