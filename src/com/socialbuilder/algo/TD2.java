@@ -11,13 +11,14 @@ public class TD2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//exo1();
+		exo1b();
 		//exo2();
 		//exo3();
 		//exo4();
 		//exo5();
 		//exo6();
 		//exo7();
-		exo7b();
+		//exo7b();
 		//exo8();
 		//exo8b();
 		//exo9();
@@ -43,6 +44,26 @@ public class TD2 {
 		
 		System.out.println("Bravo. La réponse est : " + solution);
 	}
+	
+	public static void exo1b() {
+		System.out.println("Jouons à deviner le nombre mystère.");
+		System.out.println("Saisissez un nombre entier entre 0 et 100 :");
+		
+		int reponse = scan.nextInt();
+		
+		do {
+			if(reponse > solution) {
+				System.out.println("Trop grand. Saisissez à nouveau un nombre : ");
+			} else if (reponse < solution) {
+				System.out.println("Trop petit. Saisissez à nouveau un nombre : ");
+			}
+			reponse = scan.nextInt();
+		} while(reponse != solution);
+		
+		System.out.println("Bravo. La réponse est : " + solution);
+	}
+	
+	
 	
 	public static void exo2() {
 		System.out.println("On construit un carré de 5 étoiles de coté.");

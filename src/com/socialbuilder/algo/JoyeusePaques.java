@@ -12,7 +12,7 @@ public class JoyeusePaques {
 		anneeBissextile(annee);
 
 		int mois = choixMois();
-		int jours = nombreDeJoursAnnee(mois, annee);
+		nombreDeJoursAnnee(mois, annee);
 		
 		System.out.println("Passons au calcul des fêtes mobiles associées à Paques.");
 		annee = possiblePaques(annee);
@@ -145,27 +145,13 @@ public class JoyeusePaques {
 	 */
 	public static void choixMethode(int annee) {
 		if (annee >= 1583) {
-			int[] gauss = gaussAlgo(annee);
-			int[] meeus = meeusAlgo(annee);
-			System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +"/"+ gauss[1] +"/" + annee);
-			System.out.println("Selon la méthode de Meeus, Paques tombe le " + meeus[0] +"/"+ meeus[1] +"/" + annee);
-//			conwayAlgo(annee);
-			
+			methode1(annee);
 		} else if (annee >= 326){
-			System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
-			int[] gauss = gaussAlgo(annee);
-			int[] meeus = meeusAlgo(annee);
-			System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +"/"+ gauss[1] +"/" + annee);
-			System.out.println("Selon la méthode de Meeus, Paques tombe le " + meeus[0] +"/"+ meeus[1] +"/" + annee);
+			methode2(annee);
 		} else if (annee == 325) {
-			System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
-			System.out.println("Le calcul est impossible avec l’algorithme de Meeus.");
-			int[] gauss = gaussAlgo(annee);
-			System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +"/"+ gauss[1] +"/" + annee);
+			methode3(annee);
 		} else {
-			System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
-			System.out.println("Le calcul est impossible avec l’algorithme de Meeus.");
-			System.out.println("Le calcul est impossible avec l’algorithme de Gauss.");
+			methode4();
 		}
 	}
 	
@@ -278,6 +264,37 @@ public class JoyeusePaques {
 		 * Écrire une version 2 de votre méthode utilisant l’algorithme de Conway qui 
 		 * affiche toutes les fêtes mobiles pour une année donnée.
 		 */
+	}
+	
+	public static void methode1(int annee) {
+		int[] gauss = gaussAlgo(annee);
+		int[] meeus = meeusAlgo(annee);
+		System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +"/"+ gauss[1] +"/" + annee);
+		System.out.println("Selon la méthode de Meeus, Paques tombe le " + meeus[0] +"/"+ meeus[1] +"/" + annee);
+//		conwayAlgo(annee);
+	}
+	
+	public static void methode2(int annee) {
+		System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
+		int[] gauss = gaussAlgo(annee);
+		int[] meeus = meeusAlgo(annee);
+		System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +"/"+ gauss[1] +"/" + annee);
+		System.out.println("Selon la méthode de Meeus, Paques tombe le " + meeus[0] +"/"+ meeus[1] +"/" + annee);
+
+	}
+	
+	public static void methode3(int annee) {
+		System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
+		System.out.println("Le calcul est impossible avec l’algorithme de Meeus.");
+		int[] gauss = gaussAlgo(annee);
+		System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +"/"+ gauss[1] +"/" + annee);
+
+	}
+	
+	public static void methode4() {
+		System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
+		System.out.println("Le calcul est impossible avec l’algorithme de Meeus.");
+		System.out.println("Le calcul est impossible avec l’algorithme de Gauss.");
 	}
 
 }
