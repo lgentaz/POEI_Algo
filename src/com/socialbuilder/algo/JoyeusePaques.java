@@ -7,7 +7,12 @@ public class JoyeusePaques {
 	
 	private static final Scanner scan = new Scanner(System.in);
 	
-	private static final HashMap<Integer,String> nomMois = new HashMap<Integer,String>(){{
+	private static final HashMap<Integer,String> nomMois = new HashMap<Integer,String>(){/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{
 	    put(1, "janvier");
 	    put(2, "fevrier");
 	    put(3, "mars");
@@ -22,24 +27,29 @@ public class JoyeusePaques {
 	    put(12, "decembre");
 	}};
 	
-	private static final HashMap<Integer,String> fetesMobiles = new HashMap<Integer,String>(){{
-	    put(-70, "Triodion");
-	    put(-63, "Septuagésime");
-	    put(-57, "Samedi des âmes");
-	    put(-56, "Sexagésime");
-	    put(-49, "Quinquagésime");
-	    put(-48, "Lunid Gras");
-	    put(-47, "Mardi Gras");
-	    put(-46, "Mercredi des Cendres");
-	    put(-42, "Dimanche de l'Orthodoxie");
-	    put(-41, "People's Sunday");
-	    put(-21, "Mothering Sunday");
-	    put(-14, "Dimanche de la Passion");
-	    put(-8, "Samedi de Lazare");
-	    put(-7, "Dimanche des Rameaux");
-	    put(-3, "Jeudi saint");
-	    put(-2, "Vendredi saint");
-	    put(-1, "Samedi saint");
+	private static final HashMap<Integer,String> fetesMobiles = new HashMap<Integer,String>(){/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{
+	    put((-70), "Triodion");
+	    put((-63), "Septuagésime");
+	    put((-57), "Samedi des âmes");
+	    put((-56), "Sexagésime");
+	    put((-49), "Quinquagésime");
+	    put((-48), "Lunid Gras");
+	    put((-47), "Mardi Gras");
+	    put((-46), "Mercredi des Cendres");
+	    put((-42), "Dimanche de l'Orthodoxie");
+	    put((-41), "People's Sunday");
+	    put((-21), "Mothering Sunday");
+	    put((-14), "Dimanche de la Passion");
+	    put((-8), "Samedi de Lazare");
+	    put((-7), "Dimanche des Rameaux");
+	    put((-3), "Jeudi saint");
+	    put((-2), "Vendredi saint");
+	    put((-1), "Samedi saint");
 	    put(0, "Pâques");
 	    put(3, "Fête de saint Grégoire");
 	    put(7, "Quasimodo");
@@ -56,30 +66,14 @@ public class JoyeusePaques {
 	
 	public static void main(String[] args) {
 		System.out.println("Travaillons sur le calendrier.");
-		int annee = choixAnnee();
-		anneeBissextile(annee);
+		boolean poursuit = true;
+		do {
+			int choix = menu();
+			selectionMenu(choix);
+			System.out.println();
+			poursuit = selectionPoursuite();
+		} while (poursuit);
 
-		int mois = choixMois();
-		nombreDeJoursAnnee(mois, annee);
-		
-		System.out.println("Passons au calcul des fêtes mobiles associées à Paques.");
-		annee = possiblePaques(annee);
-		
-		choixMethode(annee);
-		
-		/*
-		
-		int[] jourMois = gaussAlgo(annee);
-		
-		int myDay = jourAnnee(jourMois, annee);
-		
-		System.out.println("Paques tombe le jour n° "+ myDay);
-		
-		int[] myBigDay = dateFete(myDay,annee);
-		
-		System.out.println("Soit"+ myBigDay[0] + "/" + myBigDay[1]);*/
-		
-		//decenniesPaques(annee);
 		
 		/*
 		 * Ensuite affichez les dates de pâques pour la décennie à laquelle appartient 
@@ -88,133 +82,122 @@ public class JoyeusePaques {
 
 	}
 	
+	public static int menu() {
+		System.out.println("Choisissez une option:");
+		System.out.println("1 - Determiner si l'année est bissextile.");
+		System.out.println("2 - Connaitre le nombre de jour dans un mois.");
+		System.out.println("3 - Determiner la date de Pâques pour une année spécifique par la méthode de Gauss.");
+		System.out.println("4 - Determiner la date de Pâques pour une année spécifique par la méthode de Meuss.");
+		System.out.println("5 - Determiner la date de Pâques pour une année spécifique par la méthode de Conway.");
+		System.out.println("6 - Determiner le calendrier des fêtes mobiles pour une année spécifique (méthode de Gauss).");
+		System.out.println("7 - Determiner la date de Pâques pour la décennie suivant une année spécifique.");
+		return scan.nextInt();
+	}
+	
+	public static void selectionMenu(int i) {
+		int annee;
+		int[] datePaques = new int[2];
+		int jourPaques;
+		switch(i) {
+		case 1:
+			annee = choixAnnee();
+			boolean isBissextile = anneeBissextile(annee);
+			if (isBissextile) {
+				System.out.println("L'année "+ annee+ " est bissextile.");
+			} else {System.out.println("L'année "+ annee+ " n'est pas bissextile.");}
+			break;
+		case 2:
+			int mois = choixMois();
+			annee = choixAnnee();
+			int jours = nombreDeJoursAnnee(mois, annee);
+			System.out.println("En "+ nomMois.get(mois) +" "+ annee +", on compte "+jours+" jours.");
+			break;
+		case 3:
+			annee = choixAnnee();
+			while (annee < 325) {
+				System.out.println("Le calcul est impossible avec l’algorithme de Gauss.");
+				System.out.println("Pâques n'existait pas avant l'an 325. Merci de choisir une date ultérieure");
+				annee = choixAnnee();
+			}
+			datePaques = gaussAlgo(annee);
+			jourPaques = jourAnnee(datePaques, annee);
+			System.out.println("Selon la méthode gaussienne, Paques tombe le " + datePaques[0] +" "+ nomMois.get(datePaques[1]) +" " + annee);
+			System.out.println("Soit le " + jourPaques +"ème jour de l'année.");
+			break;
+		case 4:
+			annee = choixAnnee();
+			while (annee < 326) {
+				System.out.println("Le calcul est impossible avec l’algorithme de Meeus.");
+				System.out.println("Merci de choisir une date après 326.");
+				annee = choixAnnee();
+			}
+			datePaques = meeusAlgo(annee);
+			jourPaques = jourAnnee(datePaques, annee);
+			System.out.println("Selon la méthode de Meeus, Paques tombe le " + datePaques[0] +" "+ nomMois.get(datePaques[1]) +" " + annee);
+			System.out.println("Soit le " + jourPaques +"ème jour de l'année.");
+			break;
+		case 5:
+			annee = choixAnnee();
+			while (annee < 1583) {
+				System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
+				System.out.println("Merci de choisir une date après 1583.");
+				annee = choixAnnee();
+			}
+			datePaques = conwayAlgo(annee);
+			jourPaques = jourAnnee(datePaques, annee);
+			System.out.println("Selon la méthode de Conway, Paques tombe le " + datePaques[0] +" "+ nomMois.get(datePaques[1]) +" " + annee);
+			System.out.println("Soit le " + jourPaques +"ème jour de l'année.");
+			break;
+		case 6:
+			annee = choixAnnee();
+			while (annee < 325) {
+				System.out.println("Pâques n'existait pas avant l'an 325. Merci de choisir une date ultérieure");
+				annee = choixAnnee();
+			}
+			jourPaques = jourAnnee(gaussAlgo(annee), annee);
+			System.out.println("En "+annee);		
+			for (int s : fetesMobiles.keySet()) {
+				int[] myBigDay = dateFete(jourPaques+s,annee);
+				System.out.println(fetesMobiles.get(s) + " est le " + myBigDay[0]+" " + nomMois.get(myBigDay[1]));
+			}			
+			break;
+		case 7:
+			annee = choixAnnee();
+			while (annee < 325) {
+				System.out.println("Pâques n'existait pas avant l'an 325. Merci de choisir une date ultérieure");
+				annee = choixAnnee();
+			}
+			System.out.println("Pour la décennie suivant cette date, on célèbre Paques");
+			for (int j = 0;j<10;j++) {
+				datePaques = gaussAlgo(annee+j);
+				System.out.println("le " + datePaques[0] +" "+ nomMois.get(datePaques[1]) +" " + (annee+j));
+			}
+			break;
+		default:
+			System.out.println("Merci de choisir une option existante.");
+			break;
+		}
+	}
+	
+	public static boolean selectionPoursuite() {
+		System.out.println("Choisissez une option:");
+		System.out.println("1 - Continuer et choisir une autre option");
+		System.out.println("2 - Terminer");
+		int select = scan.nextInt();
+		if (select == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	/**
 	 * Demande à l'utilisateur de selectionner une année
 	 * @return l'année selectionnée par l'utilisateur
 	 */
-	
 	public static int choixAnnee() {
 		System.out.println("Choisissez une année :");
 		return scan.nextInt();
-	}
-	
-	/**
-	 * Verifie si Paques existe pour l'année donnée
-	 * @param annee
-	 * 			valeur selectionnée par l'utilisateur
-	 * @return La valeur de l'année séléctionnée par l'utilisateur si elle est sup à 33
-	 */
-	public static int possiblePaques(int annee) {
-		while(annee < 33) {
-			System.out.println("Veuillez entrer une année après l'an 33 :");
-			annee = scan.nextInt();
-		}
-		return annee;
-	}
-	
-	/**
-	 * Demande à l'utilisateur de selectionner un mois
-	 * @return La valeur du mois selectionné par l'utilisateur
-	 */
-	public static int choixMois() {
-		System.out.println("Choisissez un mois (numero du mois):");
-		return scan.nextInt();
-	}
-
-	/**
-	 * Determine le nombre de jours dans un mois donné 
-	 * en cas particulier (février) demande l'année (verifie si bissextile)
-	 * @param mois
-	 * @param annee
-	 * @return Le nombre de jours dans le mois selectionné en fonction de l'année
-	 */
-	public static int nombreDeJours(int mois) {
-		int jours = 0;
-		
-		switch(mois) {
-		case 1 :
-		case 3 : 
-		case 5 : 
-		case 7 : 
-		case 8 : 
-		case 10 : 
-		case 12 : 
-				jours = 31;
-				break;
-		case 2:
-			int annee = choixAnnee();
-			if (anneeBissextile(annee)) {
-				jours = 29;
-			} else {
-				jours = 28;
-			}
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			jours = 30;
-			break;
-		default:
-			System.out.println("La valeur du mois n'est pas valide. Veuillez entrer un nombre entre 1 et 12"); 
-			
-		}
-		return jours;
-	}
-	
-	/**
-	 * Determine le nombre de jours dans un mois donné pour une année spécifique
-	 * @param mois
-	 * @param annee
-	 * @return Le nombre de jours dans le mois selectionné en fonction de l'année
-	 */
-	public static int nombreDeJoursAnnee(int mois, int annee) {
-		int jours = 0;
-		switch(mois) {
-		case 1 :
-		case 3 : 
-		case 5 : 
-		case 7 : 
-		case 8 : 
-		case 10 : 
-		case 12 : 
-			jours = 31;
-			break;
-		case 2:
-			if (anneeBissextile(annee)) {
-				jours = 29;
-			} else {
-				jours = 28;
-			}
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			jours = 30;
-			break;
-		default:
-			System.out.println("La valeur du mois n'est pas valide"); 
-			
-		}
-		System.out.println("En "+ nomMois.get(mois) +" "+ annee +", on compte "+jours+" jours.");
-		return jours;
-	}
-	
-	/**
-	 * Choisis la méthode à appliquer pour le calcule de la date de Paques
-	 * @param annee
-	 */
-	public static void choixMethode(int annee) {
-		if (annee >= 1583) {
-			methode1(annee);
-		} else if (annee >= 326){
-			methode2(annee);
-		} else if (annee == 325) {
-			methode3(annee);
-		} else {
-			methode4();
-		}
 	}
 	
 	/**
@@ -227,17 +210,39 @@ public class JoyeusePaques {
 		
 		if (annee % 400 == 0) {
 			estBissextile = true;
-			System.out.println("L'année "+ annee+ " est bissextile.");
 		} else if (annee % 4 ==0 && annee % 100 !=0) {
 			estBissextile = true;
-			System.out.println("L'année "+ annee+ " est bissextile.");
-		} else {
-			System.out.println("L'année "+ annee+ " n'est pas bissextile.");
-		}
-		
+		} 
 		return estBissextile;
 	}
 	
+	/**
+	 * Demande à l'utilisateur de selectionner un mois
+	 * @return La valeur du mois selectionné par l'utilisateur
+	 */
+	public static int choixMois() {
+		System.out.println("Choisissez un mois (numero du mois):");
+		int mois = scan.nextInt();
+		while (mois<1||mois>12) {
+			System.out.println("La valeur du mois n'est pas valide");
+			System.out.println("Choisissez un mois (numero du mois):");
+			mois = scan.nextInt();
+		}
+		return mois;
+	}
+
+	public static int nombreDeJoursAnnee(int mois, int annee) {
+		int jours = 0;
+		boolean isBissextile = anneeBissextile(annee);
+		if (isBissextile) {
+			jours = mensuelB[mois-1];
+		}else {
+			jours = mensuelNB[mois-1];
+		}
+		return jours;
+	}
+
+
 	/**
 	 * Calcule la date de Paques par l'algorythme de Gauss
 	 * @param annee
@@ -348,39 +353,15 @@ public class JoyeusePaques {
 		return jourMois;
 	}
 	
-	
-	public static void methode1(int annee) {
-		int[] gauss = gaussAlgo(annee);
-		int[] meeus = meeusAlgo(annee);
-		int[] conway = conwayAlgo(annee);
-		System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +" "+ nomMois.get(gauss[1]) +" " + annee);
-		System.out.println("Selon la méthode de Meeus, Paques tombe le " + meeus[0] +" "+ nomMois.get(meeus[1]) +" " + annee);
-		System.out.println("Selon la méthode de Conway, Paques tombe le " + conway[0] +" "+ nomMois.get(conway[1]) +" " + annee);
-	}
-	
-	public static void methode2(int annee) {
-		System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
-		int[] gauss = gaussAlgo(annee);
-		int[] meeus = meeusAlgo(annee);
-		System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +" "+ nomMois.get(gauss[1]) +" " + annee);
-		System.out.println("Selon la méthode de Meeus, Paques tombe le " + meeus[0] +" "+ nomMois.get(meeus[1]) +" " + annee);
-
-	}
-	
-	public static void methode3(int annee) {
-		System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
-		System.out.println("Le calcul est impossible avec l’algorithme de Meeus.");
-		int[] gauss = gaussAlgo(annee);
-		System.out.println("Selon la méthode gaussienne, Paques tombe le " + gauss[0] +" "+ nomMois.get(gauss[1]) +" " + annee);
-
-	}
-	
-	public static void methode4() {
-		System.out.println("Désolé, Paques n'existait pas.");
-	}
-
+	/**
+	 * Converti les valeurs de la date de Paques pour le jour et le mois en une seule valeur
+	 * le nombre de jours écoulés depuis le début de l'année
+	 * @param jourMois
+	 * @param annee
+	 * @return nombre de jours écoulés avant Paques pour l'année
+	 */
 	public static int jourAnnee(int[] jourMois, int annee) {
-		int jourPaques = 1;
+		int jourPaques = 0;
 		if(anneeBissextile(annee)){
 			if(jourMois[1]==4) {jourPaques +=31;}
 			jourPaques += 31 + 29 + jourMois[0];
@@ -391,29 +372,36 @@ public class JoyeusePaques {
 		return jourPaques;
 	}
 	
+	/**
+	 * Converti le nombre de jours écoulés depuis le début de l'année 
+	 * en valeurs de jour et mois calendaire pour l'année selectionnée
+	 * @param jour
+	 * @param annee
+	 * @return
+	 */
 	public static int[] dateFete(int jour, int annee) {
-		int[] jourMois = {0,1};
+		int[] jourMois = {1,1};
 		int i = 0;
 		
 		if (anneeBissextile(annee)){
 			while(jour>0) {
-				if (jour> mensuelNB[i]) {
+				if (jour>= mensuelNB[i]) {
 					jour = jour - mensuelNB[i];
-					jourMois[1] ++;
+					jourMois[1]++;
 					i++;
 				} else {
-					jourMois[0] = jour;
+					jourMois[0] += jour;
 					jour = 0;
 				}
 			}
 		}else {
 			while(jour>0) {
-				if (jour> mensuelB[i]) {
+				if (jour>= mensuelB[i]) {
 					jour = jour - mensuelB[i];
-					jourMois[1] ++;
+					jourMois[1]++;
 					i++;
 				} else {
-					jourMois[0] = jour;
+					jourMois[0] += jour;
 					jour = 0;
 				}
 			}
