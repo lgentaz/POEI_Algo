@@ -24,9 +24,10 @@ public class TD1 {
 
 	}
 
-
+/**
+ * Concaténation 2 fois d'une syllabe choisie par l'utilisateur
+ */
 	public static void exo1() {
-		// TODO Auto-generated method stub
 
 		System.out.println("Saisissez une syllabe:");
 		String syllabe = scan.nextLine();
@@ -36,8 +37,10 @@ public class TD1 {
 
 	}
 	
+	/**
+	 * Permute les 2 chaines de caractères choisies par l'utilisateur
+	 */
 	public static void exo2() {
-		// TODO Auto-generated method stub
 
 		System.out.println("Saisissez une chaine de caractère:");
 		String var1 = scan.nextLine();
@@ -55,6 +58,9 @@ public class TD1 {
 
 	}
 	
+	/**
+	 * Trouve le maximum de 2 entiers choisis par l'utilisateur
+	 */
 	public static void exo3() {
 		int max;		
 		System.out.println("Calculons le maximum de 2 nombres.");
@@ -69,6 +75,12 @@ public class TD1 {
 		System.out.println("Le maximum est : " + max);
 	}
 	
+	/**
+	 * Trouve le max de 2 entiers le retourne
+	 * @param a un premier entier
+	 * @param b un second entier
+	 * @return le max des 2 entiers a et b
+	 */
 	public static int Max2(int a, int b) {
 		if (a >=b) {
 			return a;
@@ -76,7 +88,12 @@ public class TD1 {
 			return b;
 		}
 	}
-
+	
+	 /**
+	  * Controle le calcul d'une somme
+	  * Demande 2 entiers à l'utilisateur, demande la valeur de leur somme 
+	  * et verifie que l'entier donné par l'utilisateur est la valeur correcte
+	  */
 	public static void exo4() {
 		System.out.println("Testons l'addition.");
 		System.out.println("Saisissez un premier nombre:");
@@ -95,6 +112,10 @@ public class TD1 {
 		
 	}
 	
+	/**
+	 * Trouve le maximum de 3 entiers choisis par l'utilisateur
+	 * fait appel à la methode Max2()
+	 */
 	public static void exo5() {
 		int max;		
 		System.out.println("Calculons le maximum de 3 nombres.");
@@ -115,6 +136,9 @@ public class TD1 {
 		System.out.println("Le maximum est : " + max);
 	}
 	
+	/**
+	 * Trouve le maximum de 3 entiers choisis par l'utilisateur
+	 */
 	public static void exo5bis() {
 		int max;		
 		System.out.println("Calculons le maximum de 3 nombres.");
@@ -142,6 +166,9 @@ public class TD1 {
 		System.out.println("Le maximum est : " + max);
 	}
 	
+	/**
+	 * Répete 20 fois l'instruction; utilise une boucle while
+	 */
 	public static void exo6while() {
 		System.out.println("20 répétitions avec la boucle while");
 		String tourne = "ca tourne";
@@ -151,7 +178,10 @@ public class TD1 {
 			rep++;
 		}
 	}
-	
+
+	/**
+	 * Répete 20 fois l'instruction; utilise une boucle for
+	 */
 	public static void exo6for() {
 		System.out.println("20 répétitions avec la boucle for");
 		String tourne = "ca tourne";
@@ -161,6 +191,9 @@ public class TD1 {
 		}
 	}
 	
+	/**
+	 * Liste les n premiers entiers, valeur de n choisie par l'utilisateur, du plus petit au plus grand
+	 */
 	public static void exo7() {
 		System.out.println("Listons les n premiers entiers positifs.");
 		System.out.println("Choisissez la valeur de n:");
@@ -172,6 +205,9 @@ public class TD1 {
 
 	}
 	
+	/**
+	 * Liste les n premiers entiers, valeur de n choisie par l'utilisateur, du plus grand au plus petit
+	 */	
 	public static void exo8() {
 		System.out.println("Compte à rebours jusqu'à 1.");
 		System.out.println("Quelle est la valeur de départ? (entier positif)");
@@ -184,6 +220,10 @@ public class TD1 {
 
 	}
 	
+	/**
+	 * Calcule la somme de n entiers positifs successifs en partant de 0
+	 * n est choisi par l'utilisateur
+	 */
 	public static void exo9() {
 		System.out.println("On cherche a additionner n nombres.");
 		System.out.println("Choisissez un entier n positif:");
@@ -197,6 +237,11 @@ public class TD1 {
 		System.out.println("La somme des "+ n + " premiers entiers positifs est : " + somme);
 	}
 	
+	/**
+	 * Calcule la somme de n entiers positifs successifs en partant de 0
+	 * n est choisi par l'utilisateur
+	 * Vérifie que la valeur entrée soit bien positive
+	 */
 	public static void exo12() {
 		System.out.println("On cherche a additionner n nombres.");
 		System.out.println("Choisissez un entier n positif:");

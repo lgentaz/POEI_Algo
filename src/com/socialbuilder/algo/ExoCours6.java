@@ -1,5 +1,7 @@
 package com.socialbuilder.algo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ExoCours6 {
@@ -14,10 +16,12 @@ public class ExoCours6 {
 		//exo6_5();
 		//exo6_6();
 		//exo6_7();
-		exo6_8();
-		exo6_9();
-		exo6_10();
+		//exo6_8();
+		//exo6_9();
+		//exo6_10();
 		//tableauDimensions();
+		//tableauDynamique();
+		maMap();
 		
 	}
 	
@@ -121,7 +125,13 @@ public class ExoCours6 {
 	}
 	
 	public static void exo6_10() {
-
+		int[] tableau1 = {4,8,7,9,1,5,4,6};
+		int[] tableau2 = {7,6,5,2,1,3,7,4};
+		int[] tableauSum = new int[tableau1.length];
+		for (int i= 0;i<tableauSum.length; i++) {
+			tableauSum[i] = tableau1[i]+ tableau2[i];
+			System.out.println("Position "+i+ " dans tableau de somme: " + tableauSum[i]);
+		}
 	}
 	
 	public static void tableauDimensions() {
@@ -135,5 +145,37 @@ public class ExoCours6 {
 		}
 	}
 	
+	public static void tableauDynamique() {
+		ArrayList<String> liste = new ArrayList<String>();
+		liste.add("a");
+		liste.add("b");
+		liste.add("c");
+		liste.add("d");
+		liste.add("e");
+		
+		for (int i = 0; i<liste.size(); i++) {
+			System.out.println("élément " + liste.get(i));
+		}
+	}
 	
+	public static void maMap() {
+		HashMap<Integer,String> map = new HashMap<Integer,String>();
+		map.put(1,"aa");
+		map.put(2, "bb");
+		map.put(3,"cc");
+		map.put(4,"dd");
+		map.put(5,"ee");
+		
+		for (int s : map.keySet()) {
+			System.out.print(s + " ");
+		}
+		System.out.println();
+		for (int s : map.keySet()) {
+			System.out.print(map.get(s) + " ");
+		}
+		System.out.println();
+		for (String v : map.values()) {
+			System.out.print(v + " ");
+		}
+	}
 }

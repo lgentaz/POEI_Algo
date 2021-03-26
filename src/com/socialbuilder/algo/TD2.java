@@ -11,7 +11,7 @@ public class TD2 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//exo1();
-		exo1b();
+		//exo1b();
 		//exo2();
 		//exo3();
 		//exo4();
@@ -24,9 +24,13 @@ public class TD2 {
 		//exo9();
 		//exo10();
 		//exo11();
+		nbMystereArbreBinaire();
 
 	}
 	
+	/**
+	 * Jeu du nombre mystère
+	 */
 	public static void exo1() {
 		System.out.println("Jouons à deviner le nombre mystère.");
 		System.out.println("Saisissez un nombre entier entre 0 et 100 :");
@@ -44,7 +48,10 @@ public class TD2 {
 		
 		System.out.println("Bravo. La réponse est : " + solution);
 	}
-	
+	 /**
+	  * Jeu du nombre mystère
+	  * version do_while
+	  */
 	public static void exo1b() {
 		System.out.println("Jouons à deviner le nombre mystère.");
 		System.out.println("Saisissez un nombre entier entre 0 et 100 :");
@@ -63,8 +70,9 @@ public class TD2 {
 		System.out.println("Bravo. La réponse est : " + solution);
 	}
 	
-	
-	
+	/**
+	 * Construit un carré de 5 par 5 étoiles
+	 */
 	public static void exo2() {
 		System.out.println("On construit un carré de 5 étoiles de coté.");
 		String line = "*****";
@@ -73,6 +81,10 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Construit une diagonale d'étoiles pour le nombre de lignes demandé par utilisateur
+	 * de gauche à droite puis de droite à gauche
+	 */
 	public static void exo3() {
 		System.out.println("On construit une diagonale de n lignes de haut.");
 		System.out.println("Choisissez un nombre entre 1 et 10:");
@@ -94,6 +106,9 @@ public class TD2 {
 		
 	}
 	
+	/**
+	 * Construit triangle rectangle d'étoiles, pointe en haut, pour le nombre de lignes demandé par utilisateur
+	 */
 	public static void exo4() {
 		System.out.println("On construit un triangle rectangle de n lignes de haut.");
 		System.out.println("Choisissez un nombre entre 1 et 10:");
@@ -106,6 +121,9 @@ public class TD2 {
 		
 	}
 	
+	/**
+	 * Construit triangle isocèle d'étoiles, pointe en haut, pour le nombre de lignes demandé par utilisateur
+	 */
 	public static void exo5() {
 		System.out.println("On construit un triangle isocèle de n lignes de haut, pointe en haut.");
 		System.out.println("Choisissez un nombre entre 1 et 10:");
@@ -120,6 +138,9 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Construit triangle isocèle d'étoiles, pointe en bas, pour le nombre de lignes demandé par utilisateur
+	 */
 	public static void exo6() {
 		System.out.println("On construit un triangle rectangle de n lignes de haut, pointe en bas.");
 		System.out.println("Choisissez un nombre entre 1 et 10:");
@@ -135,6 +156,9 @@ public class TD2 {
 
 	}
 	
+	/**
+	 * Construit une liste, pour le nombre de lignes demandé par utilisateur, affichant successivement 3 strings
+	 */
 	public static void exo7() {
 		System.out.println("Sur combien de lignes voulez-vous voir le résultat? (entier inferieur à 30)");
 		int n = scan.nextInt();
@@ -150,6 +174,10 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Construit différentes formes pour le nombre de lignes demandé par utilisateur
+	 * les formes sont les : croix, sablier plein et vide,noeud papillon plein et vide 
+	 */
 	public static void exo7b() {
 		System.out.println("Sur combien de lignes voulez-vous voir le résultat? (entier inferieur à 30)");
 		int n = scan.nextInt();
@@ -177,6 +205,10 @@ public class TD2 {
 		
 	}
 	
+	/**
+	 * Dessine une croix diagonale de n lignes
+	 * @param n nombre de ligne
+	 */
 	public static void croix(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
@@ -190,6 +222,10 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Dessine un sablier plein de n lignes
+	 * @param n nombre de ligne
+	 */
 	public static void sablier_plein(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
@@ -204,6 +240,10 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Dessine un sablier vide de n lignes
+	 * @param n nombre de ligne
+	 */
 	public static void sablier_vide(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
@@ -220,6 +260,10 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Dessine un noeud papillon plein de n lignes
+	 * @param n nombre de ligne
+	 */
 	public static void noeudpap_plein(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
@@ -236,6 +280,10 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Dessine un noeud papillon vide de n lignes
+	 * @param n nombre de ligne
+	 */
 	public static void noeudpap_vide(int n) {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j<n; j++) {
@@ -250,10 +298,11 @@ public class TD2 {
 			}
 			System.out.println();
 		}
-		
-
 	}
 	
+	/**
+	 * Jeu du nombre mystère avec le calcul du nombre de coups avant victoire
+	 */
 	public static void exo8() {
 		
 		System.out.println("Jouons nouveau à deviner le nombre mystère.");
@@ -285,6 +334,9 @@ public class TD2 {
 		
 	}
 	
+	/**
+	 * Jeu du nombre mystère avec un nombre de coups limités
+	 */
 	public static void exo8b() {
 
 		System.out.println("Jouons nouveau à deviner le nombre mystère en moins de 10 coups.");
@@ -318,6 +370,9 @@ public class TD2 {
 		}
 	}
 	
+	/**
+	 * Calcule la factorielle d'un entier positif choisi par l'utilisateur
+	 */
 	public static void exo9() {		
 		System.out.println("Calculons une factorielle.");
 		System.out.println("Saisissez l'entier à factoriser:");
@@ -331,6 +386,10 @@ public class TD2 {
 		System.out.println(entier+"! = "+factorielle);
 	}
 	
+	/**
+	 * Calcule la puissance entière d'un nombre réel
+	 * les deux valeurs sont choisies par l'utilisateur
+	 */
 	public static void exo10() {
 		System.out.println("Calculons une puissance.");
 		System.out.println("Saisissez un réel à élever:");
@@ -344,9 +403,11 @@ public class TD2 {
 		}
 		
 		System.out.println(a + " puissance " + b + " égal "+ resultat);
-
 	}
 	
+	/**
+	 * Calcule le maximum de trois nombres choisis par l'utilisateur
+	 */
 	public static void exo11() {
 		int max;		
 		System.out.println("Calculons le maximum de 3 nombres.");
@@ -367,5 +428,49 @@ public class TD2 {
 		System.out.println("Le maximum est : " + max);
 		
 	}
-
+	
+	/**
+	 * Implementation de l'arbre binaire
+	 * pour l'exercice du nombre mystère
+	 */
+	public static void nbMystereArbreBinaire() {
+		System.out.println("Choisissez et retenez un entier entre 0 et 1000.");
+		System.out.println("Je vais tenter de le deviner");
+		boolean bonNb = false;
+		int max = 1000;
+		int min = 0;
+		int guess = (max-min)/2;
+		String reponse;
+		String plusGrand;
+		
+		while(!bonNb) {
+			System.out.println("Est-ce qu'il s'agit de "+ guess+ "?");
+			System.out.println("Y pour oui / N pour non");
+			reponse = scan.nextLine();
+			while((reponse.compareTo("Y"))!=0 && (reponse.compareTo("N"))!=0) {
+				System.out.println("Merci de rentrer soit Y, soit N , uniquement et en majuscule");
+				reponse = scan.nextLine();
+			}
+			if(reponse.compareTo("N")==0) {
+				System.out.println("Votre nombre est il plus grand?");
+				System.out.println("Y pour oui / N pour non");
+				plusGrand = scan.nextLine();
+				while((plusGrand.compareTo("Y"))!=0 && (plusGrand.compareTo("N"))!=0) {
+					System.out.println("Merci de rentrer soit Y, soit N , uniquement et en majuscule");
+					plusGrand = scan.nextLine();
+				}
+				if(plusGrand.compareTo("Y")==0) {
+					min = guess + 1;
+				} else {
+					max = guess - 1;
+				}
+				guess = min + (max-min)/2;
+				
+			} else {
+				bonNb= true;
+			}
+		}
+		System.out.println("Merci d'avoir joué.");
+		
+	}
 }
