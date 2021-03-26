@@ -339,7 +339,7 @@ public class JoyeusePaques {
 			int s = c / 4;
 			int t = c % 4;
 			int p = (c + 8) / 25;
-			int q = (c+p+1)/3;
+			int q = (c-p+1)/3;
 			e = (19*a + c - s - q + 15) % 30;
 			b = u / 4;
 			d = u % 4;
@@ -359,12 +359,12 @@ public class JoyeusePaques {
 	 */
 	public static int[] conwayAlgo(int annee) {
 		int s = annee/100;
-		int t= annee%100;
+		int t = annee%100;
 		int a = t/4;
 		int b = s/4;
 		int p = s%4;
-		int jps = (9-2*p)/7;
-		int jp = (jps+t+a)/7;
+		int jps = (9-2*p)%7;
+		int jp = (jps+t+a)%7;
 		int g = annee%19;
 		int G = g+1;
 		int r = 8*(s+11)/25;
