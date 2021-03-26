@@ -7,11 +7,11 @@ public class JoyeusePaques {
 	
 	private static final Scanner scan = new Scanner(System.in);
 	
-	private static final HashMap<Integer,String> nomMois = new HashMap<Integer,String>(){/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
+	/**
+	 * Map associant à chaque valeur numérique d'un mois sa forme écrite
+	 */
+	private static final HashMap<Integer,String> nomMois = new HashMap<Integer,String>(){
+		private static final long serialVersionUID = 1L; //added automatically by eclipse
 	{
 	    put(1, "janvier");
 	    put(2, "fevrier");
@@ -27,18 +27,18 @@ public class JoyeusePaques {
 	    put(12, "decembre");
 	}};
 	
-	private static final HashMap<Integer,String> fetesMobiles = new HashMap<Integer,String>(){/**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L;
-
+	/**
+	 * Map associant à chacune des "distances" en jour avec Paques (clé) le nom de la fête mobile (valeur)
+	 */
+	private static final HashMap<Integer,String> fetesMobiles = new HashMap<Integer,String>(){
+		private static final long serialVersionUID = 1L; //added automatically by eclipse
 	{
 	    put((-70), "Triodion");
 	    put((-63), "Septuagésime");
 	    put((-57), "Samedi des âmes");
 	    put((-56), "Sexagésime");
 	    put((-49), "Quinquagésime");
-	    put((-48), "Lunid Gras");
+	    put((-48), "Lundi Gras");
 	    put((-47), "Mardi Gras");
 	    put((-46), "Mercredi des Cendres");
 	    put((-42), "Dimanche de l'Orthodoxie");
@@ -61,27 +61,33 @@ public class JoyeusePaques {
 	    put(60, "Fête-Dieu");
 	}};
 	
+	/**
+	 * Tableau listant le nombre de jour pour chaque mois d'une année non bissextile
+	 */
 	private static final int[] mensuelNB  = {31,28,31,30,31,30,31,31,30,31,30,31};
+	
+	/**
+	 * Tableau listant le nombre de jour pour chaque mois d'une année bissextile
+	 */
 	private static final int[] mensuelB  = {31,29,31,30,31,30,31,31,30,31,30,31};
 	
 	public static void main(String[] args) {
 		System.out.println("Travaillons sur le calendrier.");
 		boolean poursuit = true;
-		do {
-			int choix = menu();
+		do //cette boucle do while permet de relancer la selection tant que l'utilisateur ne change pas la valeur de "poursuit"
+		{	int choix = menu();
+			System.out.println();
 			selectionMenu(choix);
 			System.out.println();
 			poursuit = selectionPoursuite();
+			System.out.println();
 		} while (poursuit);
-
-		
-		/*
-		 * Ensuite affichez les dates de pâques pour la décennie à laquelle appartient 
-		 * la date saisie par l’utilisateur.
-		 */
-
 	}
 	
+	/**
+	 * Affiche la liste des options de traitement des différentes méthodes et renvoie la selection de l'utilisateur
+	 * @return la valeur selectionnée par l'utilisateur
+	 */
 	public static int menu() {
 		System.out.println("Choisissez une option:");
 		System.out.println("1 - Determiner si l'année est bissextile.");
@@ -94,6 +100,10 @@ public class JoyeusePaques {
 		return scan.nextInt();
 	}
 	
+	/**
+	 * Répartie les fonctionnalitées à appeler en fonction de la selection du menu
+	 * @param i valeur correspondant à l'option du menu selectionnée par l'utilisateur
+	 */
 	public static void selectionMenu(int i) {
 		int annee;
 		int[] datePaques = new int[2];
@@ -101,6 +111,7 @@ public class JoyeusePaques {
 		switch(i) {
 		case 1:
 			annee = choixAnnee();
+			System.out.println();
 			boolean isBissextile = anneeBissextile(annee);
 			if (isBissextile) {
 				System.out.println("L'année "+ annee+ " est bissextile.");
@@ -108,12 +119,15 @@ public class JoyeusePaques {
 			break;
 		case 2:
 			int mois = choixMois();
+			System.out.println();
 			annee = choixAnnee();
+			System.out.println();
 			int jours = nombreDeJoursAnnee(mois, annee);
 			System.out.println("En "+ nomMois.get(mois) +" "+ annee +", on compte "+jours+" jours.");
 			break;
 		case 3:
 			annee = choixAnnee();
+			System.out.println();
 			while (annee < 325) {
 				System.out.println("Le calcul est impossible avec l’algorithme de Gauss.");
 				System.out.println("Pâques n'existait pas avant l'an 325. Merci de choisir une date ultérieure");
@@ -126,10 +140,12 @@ public class JoyeusePaques {
 			break;
 		case 4:
 			annee = choixAnnee();
+			System.out.println();
 			while (annee < 326) {
 				System.out.println("Le calcul est impossible avec l’algorithme de Meeus.");
 				System.out.println("Merci de choisir une date après 326.");
 				annee = choixAnnee();
+				System.out.println();
 			}
 			datePaques = meeusAlgo(annee);
 			jourPaques = jourAnnee(datePaques, annee);
@@ -138,10 +154,12 @@ public class JoyeusePaques {
 			break;
 		case 5:
 			annee = choixAnnee();
+			System.out.println();
 			while (annee < 1583) {
 				System.out.println("Le calcul est impossible avec l’algorithme de Conway.");
 				System.out.println("Merci de choisir une date après 1583.");
 				annee = choixAnnee();
+				System.out.println();
 			}
 			datePaques = conwayAlgo(annee);
 			jourPaques = jourAnnee(datePaques, annee);
@@ -150,9 +168,11 @@ public class JoyeusePaques {
 			break;
 		case 6:
 			annee = choixAnnee();
+			System.out.println();
 			while (annee < 325) {
 				System.out.println("Pâques n'existait pas avant l'an 325. Merci de choisir une date ultérieure");
 				annee = choixAnnee();
+				System.out.println();
 			}
 			jourPaques = jourAnnee(gaussAlgo(annee), annee);
 			System.out.println("En "+annee);		
@@ -163,9 +183,11 @@ public class JoyeusePaques {
 			break;
 		case 7:
 			annee = choixAnnee();
+			System.out.println();
 			while (annee < 325) {
 				System.out.println("Pâques n'existait pas avant l'an 325. Merci de choisir une date ultérieure");
 				annee = choixAnnee();
+				System.out.println();
 			}
 			System.out.println("Pour la décennie suivant cette date, on célèbre Paques");
 			for (int j = 0;j<10;j++) {
@@ -175,10 +197,15 @@ public class JoyeusePaques {
 			break;
 		default:
 			System.out.println("Merci de choisir une option existante.");
+			System.out.println();
 			break;
 		}
 	}
 	
+	/**
+	 * Affiche l'option de terminer le programme ou relancer le menu, puis récupère la selection de l'utilisateur
+	 * @return un booléen indiquant si l'execution se poursuit
+	 */
 	public static boolean selectionPoursuite() {
 		System.out.println("Choisissez une option:");
 		System.out.println("1 - Continuer et choisir une autre option");
@@ -231,6 +258,12 @@ public class JoyeusePaques {
 		return mois;
 	}
 
+	/**
+	 * Récupère le nombre de jour dans un mois 
+	 * @param mois
+	 * @param annee
+	 * @return jours le nombre de jours pour le mois et l'année donnés
+	 */
 	public static int nombreDeJoursAnnee(int mois, int annee) {
 		int jours = 0;
 		boolean isBissextile = anneeBissextile(annee);
@@ -356,9 +389,9 @@ public class JoyeusePaques {
 	/**
 	 * Converti les valeurs de la date de Paques pour le jour et le mois en une seule valeur
 	 * le nombre de jours écoulés depuis le début de l'année
-	 * @param jourMois
+	 * @param jourMois tableau contenant 2 valeurs le jour et le mois de Paques
 	 * @param annee
-	 * @return nombre de jours écoulés avant Paques pour l'année
+	 * @return nombre de jours écoulés avant Pâques pour l'année donnée
 	 */
 	public static int jourAnnee(int[] jourMois, int annee) {
 		int jourPaques = 0;
@@ -377,35 +410,29 @@ public class JoyeusePaques {
 	 * en valeurs de jour et mois calendaire pour l'année selectionnée
 	 * @param jour
 	 * @param annee
-	 * @return
+	 * @return jourMois un tableau contenant 2 valeurs: le jour et le mois associé au nombre entré
 	 */
 	public static int[] dateFete(int jour, int annee) {
 		int[] jourMois = {1,1};
 		int i = 0;
-		
+		int[] calendrier = new int[12];
 		if (anneeBissextile(annee)){
-			while(jour>0) {
-				if (jour>= mensuelNB[i]) {
-					jour = jour - mensuelNB[i];
-					jourMois[1]++;
-					i++;
-				} else {
-					jourMois[0] += jour;
-					jour = 0;
-				}
-			}
+			calendrier = mensuelB;
 		}else {
-			while(jour>0) {
-				if (jour>= mensuelB[i]) {
-					jour = jour - mensuelB[i];
-					jourMois[1]++;
-					i++;
-				} else {
-					jourMois[0] += jour;
-					jour = 0;
-				}
+			calendrier = mensuelNB;
+		}
+		
+		while(jour>0) {
+			if (jour> calendrier[i]) {
+				jour = jour - calendrier[i];
+				jourMois[1]++;
+				i++;
+			}else {
+				jourMois[0] = jour;
+				jour = 0;
 			}
 		}
+
 		return jourMois ;
 	}
 }
